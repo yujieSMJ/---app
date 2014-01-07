@@ -11,6 +11,15 @@
 @interface XmlCommands : NSObject
 
 enum{
+    Insert = 0,
+    Delete = 1,
+    Updata = 2,
+    Select = 3,
+    Paging = 4,
+};
+typedef NSUInteger CommandType;
+
+enum{
     Equality = 0,
     Inequality = 1,
     Greater = 2,
@@ -20,17 +29,37 @@ enum{
 };
 typedef NSUInteger ReleationShip;
 
+enum{
+    NONE = 0,
+    AND = 1,
+    OR = 2,
+};
+typedef NSUInteger AppendType;
+
+enum{
+    Int32 = 0,
+    String = 1,
+    Double = 2,
+    Boolen = 3,
+    DataTime = 4,
+    Decimal = 5,
+};
+typedef NSUInteger ParameterType;
+
+
 +(NSMutableString *)createSimpleCommand:(NSMutableDictionary *)command andParameters:(NSMutableArray *)MParameterList andSelectParameter:(NSMutableDictionary *)SParameter;
 
-+(NSMutableString *)createSimpleCommandByType:(NSString *)type andTableName:(NSString *)tname andParaSort:(NSString *)paraIDs andSelectPID:(NSString *)spid andKeyName:(NSString *)keyname andParameters:(NSMutableArray *)MParameterList andSelectParameter:(NSMutableDictionary *)SParameter;
++(NSMutableString *)createSimpleCommandByType:(CommandType)type andTableName:(NSString *)tname andParaSort:(NSString *)paraIDs andSelectPID:(NSString *)spid andKeyName:(NSString *)keyname andParameters:(NSMutableArray *)MParameterList andSelectParameter:(NSMutableDictionary *)SParameter;
 
-+(NSMutableDictionary *)createParameterFieldsByName:(NSString *)name andValue:(NSString *)value andReleationShip:(NSString *)releat andAppend:(NSString *)append andIndex:(NSString *)index andType:(NSString *)type;
++(NSMutableDictionary *)createParameterFieldsByName:(NSString *)name andValue:(NSString *)value andReleationShip:(ReleationShip)releat andAppend:(AppendType)append andIndex:(NSString *)index andType:(ParameterType)type;
 
 //生成包含多个参数和orderby参数的where条件
-+(NSMutableDictionary *)createSelectParameterByID:(NSString *)spid andTops:(NSString *)top andPrimaryFieldList:(NSMutableArray *)primaryField andOrderByList:(NSMutableArray *)orderby;
++(NSMutableDictionary *)createSelectParameterByID:(NSString *)spid andTops:(NSString *)top andPageSize:(NSUInteger)size andPrimaryFieldList:(NSMutableArray *)primaryField andOrderByList:(NSMutableArray *)orderby;
+
++(NSMutableDictionary *)createSelectParameterByPFieldList:(NSMutableArray *)primaryField andOrderByList:(NSMutableArray *)orderby;
 
 //创建where条件的orderby命令
-+(NSMutableDictionary *)createOrderByName:(NSString *)name andOrder:(NSString *)order andIndex:(NSString *)index andType:(NSString *)type;
++(NSMutableDictionary *)createOrderByName:(NSString *)name andOrder:(NSString *)order andIndex:(NSString *)index andType:(CommandType)type;
 
 //生成参数
 +(NSMutableDictionary *)createModiParameterByID:(NSString *)paraID andFields:(NSMutableDictionary *)fields;
@@ -38,7 +67,7 @@ typedef NSUInteger ReleationShip;
 //生成多个参数
 +(NSMutableDictionary *)createModiParameterByID:(NSString *)paraID andFieldList:(NSMutableArray *)fieldlist;
 
-+(NSMutableDictionary *)createFieldByName:(NSString *)name andType:(NSString *)type andValue:(NSString *)value;
++(NSMutableDictionary *)createFieldByName:(NSString *)name andType:(CommandType)type andValue:(NSString *)value;
 
 
 @end

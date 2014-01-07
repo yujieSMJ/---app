@@ -19,10 +19,11 @@
 		63B174B31870FCB2005DA5D3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63B174B21870FCB2005DA5D3 /* Security.framework */; };
 		63B174B81870FFA9005DA5D3 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63B174B61870FFA9005DA5D3 /* RootViewController.m */; };
 		63B174B91870FFA9005DA5D3 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63B174B71870FFA9005DA5D3 /* RootViewController.xib */; };
+		63D1DFA4187B8CA0003E6772 /* SMJShopTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D1DFA3187B8CA0003E6772 /* SMJShopTableController.m */; };
+		63D1DFA7187B9874003E6772 /* SMJShopListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D1DFA6187B9874003E6772 /* SMJShopListCell.m */; };
 		63D37FC01872B34B00AF9F59 /* AsynchronousRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D37FB91872B34B00AF9F59 /* AsynchronousRequest.m */; };
 		63D37FC11872B34B00AF9F59 /* EncryptionBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D37FBB1872B34B00AF9F59 /* EncryptionBase64.m */; };
 		63D37FC21872B34B00AF9F59 /* SynchronousRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D37FBD1872B34B00AF9F59 /* SynchronousRequest.m */; };
-		63D37FC31872B34B00AF9F59 /* XmlCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D37FBF1872B34B00AF9F59 /* XmlCommand.m */; };
 		63D37FC61872BFB000AF9F59 /* SMJAnno.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D37FC51872BFB000AF9F59 /* SMJAnno.m */; };
 		63D37FC91872C05E00AF9F59 /* SMJAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D37FC81872C05E00AF9F59 /* SMJAnnotation.m */; };
 		63D37FCC1872E47F00AF9F59 /* classify_i02.png in Resources */ = {isa = PBXBuildFile; fileRef = 63D37FCB1872E47F00AF9F59 /* classify_i02.png */; };
@@ -186,14 +187,16 @@
 		63B174B51870FFA9005DA5D3 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		63B174B61870FFA9005DA5D3 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		63B174B71870FFA9005DA5D3 /* RootViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
+		63D1DFA2187B8CA0003E6772 /* SMJShopTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMJShopTableController.h; sourceTree = "<group>"; };
+		63D1DFA3187B8CA0003E6772 /* SMJShopTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMJShopTableController.m; sourceTree = "<group>"; };
+		63D1DFA5187B9874003E6772 /* SMJShopListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMJShopListCell.h; sourceTree = "<group>"; };
+		63D1DFA6187B9874003E6772 /* SMJShopListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMJShopListCell.m; sourceTree = "<group>"; };
 		63D37FB81872B34B00AF9F59 /* AsynchronousRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsynchronousRequest.h; sourceTree = "<group>"; };
 		63D37FB91872B34B00AF9F59 /* AsynchronousRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsynchronousRequest.m; sourceTree = "<group>"; };
 		63D37FBA1872B34B00AF9F59 /* EncryptionBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EncryptionBase64.h; sourceTree = "<group>"; };
 		63D37FBB1872B34B00AF9F59 /* EncryptionBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EncryptionBase64.m; sourceTree = "<group>"; };
 		63D37FBC1872B34B00AF9F59 /* SynchronousRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynchronousRequest.h; sourceTree = "<group>"; };
 		63D37FBD1872B34B00AF9F59 /* SynchronousRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SynchronousRequest.m; sourceTree = "<group>"; };
-		63D37FBE1872B34B00AF9F59 /* XmlCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlCommand.h; sourceTree = "<group>"; };
-		63D37FBF1872B34B00AF9F59 /* XmlCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XmlCommand.m; sourceTree = "<group>"; };
 		63D37FC41872BFB000AF9F59 /* SMJAnno.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMJAnno.h; sourceTree = "<group>"; };
 		63D37FC51872BFB000AF9F59 /* SMJAnno.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMJAnno.m; sourceTree = "<group>"; };
 		63D37FC71872C05E00AF9F59 /* SMJAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMJAnnotation.h; sourceTree = "<group>"; };
@@ -448,6 +451,10 @@
 		63D37FB6187295F200AF9F59 /* Shops */ = {
 			isa = PBXGroup;
 			children = (
+				63D1DFA2187B8CA0003E6772 /* SMJShopTableController.h */,
+				63D1DFA3187B8CA0003E6772 /* SMJShopTableController.m */,
+				63D1DFA5187B9874003E6772 /* SMJShopListCell.h */,
+				63D1DFA6187B9874003E6772 /* SMJShopListCell.m */,
 			);
 			name = Shops;
 			sourceTree = "<group>";
@@ -463,8 +470,6 @@
 				63D37FBB1872B34B00AF9F59 /* EncryptionBase64.m */,
 				63D37FBC1872B34B00AF9F59 /* SynchronousRequest.h */,
 				63D37FBD1872B34B00AF9F59 /* SynchronousRequest.m */,
-				63D37FBE1872B34B00AF9F59 /* XmlCommand.h */,
-				63D37FBF1872B34B00AF9F59 /* XmlCommand.m */,
 			);
 			path = DBHelper;
 			sourceTree = "<group>";
@@ -663,9 +668,10 @@
 				63B174B81870FFA9005DA5D3 /* RootViewController.m in Sources */,
 				63A9C2DA187A33650098ED1B /* XmlCommands.m in Sources */,
 				63D37FC01872B34B00AF9F59 /* AsynchronousRequest.m in Sources */,
+				63D1DFA4187B8CA0003E6772 /* SMJShopTableController.m in Sources */,
 				63D37FC21872B34B00AF9F59 /* SynchronousRequest.m in Sources */,
 				63DABF6518696C01006B7A7B /* SMJAppDelegate.mm in Sources */,
-				63D37FC31872B34B00AF9F59 /* XmlCommand.m in Sources */,
+				63D1DFA7187B9874003E6772 /* SMJShopListCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

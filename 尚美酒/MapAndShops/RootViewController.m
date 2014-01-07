@@ -10,7 +10,7 @@
 #import "SynchronousRequest.h"
 #import "SMJAnno.h"
 #import "SMJAnnotation.h"
-#import "XmlCommands.h"
+#import "SMJShopTableController.h"
 
 @interface RootViewController ()
 
@@ -52,91 +52,17 @@
     //查询条件
     [self addTopButtons];
     
-    /*
-    NSString *doubles1 = [NSString stringWithFormat:@"%f",_userLocation.latitude];
-    NSString *doubles2 = [NSString stringWithFormat:@"%f",_userLocation.longitude];
-    
-    NSArray *parameter1 = [NSArray arrayWithObjects:doubles1,@"Double", nil];
-    NSArray *parameter2 = [NSArray arrayWithObjects:doubles2,@"Double", nil];
-    
-    NSMutableDictionary *location = [[NSMutableDictionary alloc]init];
-    [location setObject:parameter1 forKey:@"Latitude"];
-    [location setObject:parameter2 forKey:@"Longitude"];
-    
-    NSMutableDictionary *object = [[NSMutableDictionary alloc]init];
-    [object setObject:location forKey:@"object"];
-    
-    NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
-    [dic setObject:@"Select" forKey:@"CommandType"];
-    [dic setObject:object forKey:@"Parameters"];
-    [dic setObject:@"1" forKey:@"Sort"];
-    
-    NSString *doubles3 = [NSString stringWithFormat:@"%f",_userLocation.latitude];
-    NSString *doubles4 = [NSString stringWithFormat:@"%f",_userLocation.longitude];
-    NSArray *parameter3 = [NSArray arrayWithObjects:doubles3,@"Double", nil];
-    NSArray *parameter4 = [NSArray arrayWithObjects:doubles4,@"Double", nil];
-    NSMutableDictionary *location1 = [[NSMutableDictionary alloc]init];
-    [location1 setObject:parameter3 forKey:@"Latitude"];
-    [location1 setObject:parameter4 forKey:@"Longitude"];
-    
-    NSMutableDictionary *object1 = [[NSMutableDictionary alloc]init];
-    [object1 setObject:location1 forKey:@"object"];
-    
-    NSMutableDictionary *dic1 = [[NSMutableDictionary alloc]init];
-    [dic1 setObject:@"Select1" forKey:@"CommandType"];
-    [dic1 setObject:object1 forKey:@"Parameters"];
-    NSMutableArray *a = [NSMutableArray arrayWithObjects:dic,dic1, nil];
-    NSString *xml = [XmlCommand CreatXmlCommands:a];
-    
-    //NSData *data = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:nil];
-    //NSString *json = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-    NSData *result = [SynchronousRequest synchronousPost:@"http://10.255.102.81:65433/test.aspx" postXMLString:xml];
-     
-     NSLog(@"%@",xml);
-     NSArray *results = [NSJSONSerialization JSONObjectWithData:result options:NSJSONReadingMutableContainers error:nil];
-     
-     for (NSMutableDictionary *shops in results)
-     {
-     annotations = [[NSMutableDictionary alloc]initWithDictionary:[shops objectForKey:@"Result"]];
-     }
-     */
-    /*
-    NSMutableDictionary *c = [[NSMutableDictionary alloc]init];
-    [c setValue:@"654" forKey:@"time"];
-    [c setValue:@"321" forKey:@"table"];
-    
-    NSMutableDictionary *d = [[NSMutableDictionary alloc]init];
-    [d setValue:@"963" forKey:@"good"];
-    [d setValue:@"852" forKey:@"jock"];
-    
-    NSMutableDictionary *b = [[NSMutableDictionary alloc]init];
-    [b setValue:c forKey:@"job"];
-    [b setValue:d forKey:@"hello"];
-    
-    NSMutableDictionary *a = [[NSMutableDictionary alloc]init];
-    [a setValue:@"123" forKey:@"CommandType"];
-    [a setValue:@"456" forKey:@"TextParameter"];
-    [a setValue:@"789" forKey:@"TableName"];
-    [a setValue:@"987" forKey:@"Sort"];
-    [a setValue:b forKey:@"Parameters"];
-     */
     [self addPointAnnotation];
-//    NSMutableDictionary *params = [[NSMutableDictionary alloc]init];
-//    [params setObject:[Objects SetParameterValue:@"1" andParameterType:Int32] forKey:@"ShopID"];
-//    [params setObject:[Objects SetParameterValue:@"1" andParameterType:String] forKey:@"Bname"];
-//    
-//    NSMutableDictionary *object = [Objects CreateNewObject:@"object" Parameters:params];
-//    
-//    NSMutableDictionary *dic2 = [XmlCommand CreateCommand:@"Select" textParameter:@"ShopID = 1" tableName:@"Brand" keyName:@"BrandID" sort:@"1" parameters:object];
-//    NSString *a = [XmlCommand CreatXmlCommand:dic2];
 //    NSData *result = [SynchronousRequest synchronousPost:@"http://tech-qilin:8088/IOSInterface/Default.aspx" postXMLString:a];
 //    NSDictionary *resultDate = [NSJSONSerialization JSONObjectWithData:result options:NSJSONReadingMutableContainers error:nil];
 //    NSLog(@"%@",resultDate);
     
     
     //////////////////////////////////////////////////////////////////////////
+    ////生成参数的列表对象PrimaryFieldList//////////
+    //////////////////////////////////////////////////////////////////////////
     
-    NSMutableDictionary *field1 = [XmlCommands createFieldByName:@"Bname" andType:@"String" andValue:@"尚美酒"];
+    NSMutableDictionary *field1 = [XmlCommands createFieldByName:@"Bname" andType:String andValue:@"尚美酒"];
     
     NSMutableArray *fields = [NSMutableArray arrayWithObjects:field1, nil];
     
@@ -145,43 +71,54 @@
     NSMutableArray *mp =[NSMutableArray arrayWithObjects:mp1, nil];
     
     ///////////////////////////////////////////////////////////////////////////
+    ///生成where条件的列表对象OrderByList//////
+    //////////////////////////////////////////////////////////////////////////
     
-    NSMutableDictionary *pf = [XmlCommands createParameterFieldsByName:@"BID" andValue:@"1" andReleationShip:@"=" andAppend:@"" andIndex:@"0" andType:@"Int32"];
+    NSMutableDictionary *pf = [XmlCommands createParameterFieldsByName:@"BID" andValue:@"1" andReleationShip:Equality andAppend:NONE andIndex:@"0" andType:Int32];
     
     NSMutableArray *pflist = [NSMutableArray arrayWithObjects:pf, nil];
     
-    //////////////////////////////////////////////////////////////////////////////
-    
-    NSMutableDictionary *ord =[XmlCommands createOrderByName:@"Bname" andOrder:@"desc" andIndex:@"0" andType:@"String"];
+    NSMutableDictionary *ord =[XmlCommands createOrderByName:@"Bname" andOrder:@"desc" andIndex:@"0" andType:String];
     
     NSMutableArray *ords = [NSMutableArray arrayWithObjects:ord, nil];
     
-    NSMutableDictionary *sp = [XmlCommands createSelectParameterByID:@"0" andTops:@"" andPrimaryFieldList:pflist andOrderByList:ords];
+    NSMutableDictionary *sp = [XmlCommands createSelectParameterByID:@"0" andTops:@"" andPageSize:0 andPrimaryFieldList:pflist andOrderByList:ords];
     
-    NSMutableString *xml = [XmlCommands createSimpleCommandByType:@"Select" andTableName:@"Brand" andParaSort:@"0" andSelectPID:@"0" andKeyName:@"Bname" andParameters:mp andSelectParameter:sp];
+    ////////////////////////////////////////////////////////////////////////////////////////////
+    ////生成单条XMLcommand命令，需要参数的列表对象PrimaryFieldList和where条件的列表对象OrderByList//////
+    ////////////////////////////////////////////////////////////////////////////////////////////
+    
+    NSMutableString *xml = [XmlCommands createSimpleCommandByType:Select andTableName:@"Brand" andParaSort:@"0" andSelectPID:@"0" andKeyName:@"Bname" andParameters:mp andSelectParameter:sp];
     
     NSLog(@"%@",xml);
 }
 
 -(void)addTopButtons
 {
-    UIView *buttons = [[UIView alloc]initWithFrame:CGRectMake(80, 7, 160, 30)];
+    //UIView *buttons = [[UIView alloc]initWithFrame:CGRectMake(80, 7, 160, 30)];
     
-    UIButton * list = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    list.frame = CGRectMake(0, 0, 80, 30);
-    [list setTitle:@"列表" forState:UIControlStateNormal];
-    [list addTarget:self action:@selector(pushtonewcontroller) forControlEvents:UIControlEventTouchUpInside];
+    UISegmentedControl *select = [[UISegmentedControl alloc]initWithFrame:CGRectMake(80, 7, 160, 30)];
+    [select insertSegmentWithTitle:@"列表" atIndex:0 animated:YES];
+    [select insertSegmentWithTitle:@"地图" atIndex:1 animated:YES];
+    select.selectedSegmentIndex = 1;
+    [select addTarget:self action:@selector(pushtonewcontroller:) forControlEvents:UIControlEventValueChanged];
     
-    UIButton * map = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    map.frame = CGRectMake(80, 0, 80, 30);
-    map.selected = YES;
-    [map setTitle:@"地图" forState:UIControlStateSelected];
+//    UIButton * list = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+//    list.frame = CGRectMake(0, 0, 80, 30);
+//    [list setTitle:@"列表" forState:UIControlStateNormal];
+//    [list addTarget:self action:@selector(pushtonewcontroller) forControlEvents:UIControlEventTouchUpInside];
+//    
+//    UIButton * map = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+//    map.frame = CGRectMake(80, 0, 80, 30);
+//    map.selected = YES;
+//    [map setTitle:@"地图" forState:UIControlStateSelected];
     
+//    
+//    [buttons addSubview:list];
+//    [buttons addSubview:map];
     
-    [buttons addSubview:list];
-    [buttons addSubview:map];
+    [self.navigationController.navigationBar addSubview:select];
     
-    [self.navigationController.navigationBar addSubview:buttons];
 }
 
 - (void)addPointAnnotation
@@ -213,9 +150,18 @@
      
 }
 
--(void)pushtonewcontroller{
-    //SMJShopTableController * shopList = [[SMJShopTableController alloc]init];
-    //[self.navigationController pushViewController:shopList animated:YES];
+-(void)pushtonewcontroller:(id)sender{
+    SMJShopTableController * shopList = [[SMJShopTableController alloc]init];
+    UISegmentedControl * control = (UISegmentedControl *)sender;
+    switch (control.selectedSegmentIndex) {
+        case 0:
+            [self.navigationController pushViewController:shopList animated:YES];
+            break;
+            
+        default:
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            break;
+    }
 }
 -(void)viewWillAppear:(BOOL)animated{
     [_mapView viewWillAppear];
