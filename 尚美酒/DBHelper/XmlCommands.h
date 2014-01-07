@@ -15,7 +15,10 @@ enum{
     Delete = 1,
     Updata = 2,
     Select = 3,
+<<<<<<< HEAD
     Paging = 4,
+=======
+>>>>>>> cf00b9c03c0823041c5fabdd49443fedcdfd82a2
 };
 typedef NSUInteger CommandType;
 
@@ -36,6 +39,7 @@ enum{
 };
 typedef NSUInteger AppendType;
 
+<<<<<<< HEAD
 enum{
     Int32 = 0,
     String = 1,
@@ -46,6 +50,8 @@ enum{
 };
 typedef NSUInteger ParameterType;
 
+=======
+>>>>>>> cf00b9c03c0823041c5fabdd49443fedcdfd82a2
 
 +(NSMutableString *)createSimpleCommand:(NSMutableDictionary *)command andParameters:(NSMutableArray *)MParameterList andSelectParameter:(NSMutableDictionary *)SParameter;
 
@@ -55,6 +61,8 @@ typedef NSUInteger ParameterType;
 
 //生成包含多个参数和orderby参数的where条件
 +(NSMutableDictionary *)createSelectParameterByID:(NSString *)spid andTops:(NSString *)top andPageSize:(NSUInteger)size andPrimaryFieldList:(NSMutableArray *)primaryField andOrderByList:(NSMutableArray *)orderby;
+
++(NSMutableDictionary *)createSelectParameterByPFieldList:(NSMutableArray *)primaryField andOrderByList:(NSMutableArray *)orderby;
 
 +(NSMutableDictionary *)createSelectParameterByPFieldList:(NSMutableArray *)primaryField andOrderByList:(NSMutableArray *)orderby;
 

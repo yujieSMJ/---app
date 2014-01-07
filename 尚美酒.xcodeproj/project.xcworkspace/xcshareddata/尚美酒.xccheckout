@@ -5,19 +5,31 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
+<<<<<<< HEAD
 	<string>FB660EDA-09AB-43B5-B683-AAD2C8A8D029</string>
+=======
+	<string>1D2A9A7F-7DF0-4079-B1ED-08D7CE5EB53A</string>
+>>>>>>> cf00b9c03c0823041c5fabdd49443fedcdfd82a2
 	<key>IDESourceControlProjectName</key>
 	<string>尚美酒</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
+<<<<<<< HEAD
 		<key>150CC4D4-B7C6-4123-8F8D-3657D8408447</key>
+=======
+		<key>F685FA92-3E2D-42EF-930A-AF751E839AD9</key>
+>>>>>>> cf00b9c03c0823041c5fabdd49443fedcdfd82a2
 		<string>https://github.com/yujieSMJ/---app.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>尚美酒.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
+<<<<<<< HEAD
 		<key>150CC4D4-B7C6-4123-8F8D-3657D8408447</key>
+=======
+		<key>F685FA92-3E2D-42EF-930A-AF751E839AD9</key>
+>>>>>>> cf00b9c03c0823041c5fabdd49443fedcdfd82a2
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
@@ -25,16 +37,26 @@
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
+<<<<<<< HEAD
 	<string>150CC4D4-B7C6-4123-8F8D-3657D8408447</string>
+=======
+	<string>F685FA92-3E2D-42EF-930A-AF751E839AD9</string>
+>>>>>>> cf00b9c03c0823041c5fabdd49443fedcdfd82a2
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
+<<<<<<< HEAD
 			<string>150CC4D4-B7C6-4123-8F8D-3657D8408447</string>
 			<key>IDESourceControlWCCName</key>
 			<string>尚美酒app</string>
+=======
+			<string>F685FA92-3E2D-42EF-930A-AF751E839AD9</string>
+			<key>IDESourceControlWCCName</key>
+			<string>尚美酒</string>
+>>>>>>> cf00b9c03c0823041c5fabdd49443fedcdfd82a2
 		</dict>
 	</array>
 </dict>

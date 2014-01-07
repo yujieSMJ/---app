@@ -216,6 +216,16 @@
     return sp;
 }
 
+//生成包含多个参数和orderby参数的where条件
++(NSMutableDictionary *)createSelectParameterByPFieldList:(NSMutableArray *)primaryField andOrderByList:(NSMutableArray *)orderby{
+    NSMutableDictionary *sp = [[NSMutableDictionary alloc]init];
+    [sp setObject:@"0" forKey:@"ID"];
+    [sp setObject:@"" forKey:@"Top"];
+    [sp setObject:primaryField forKey:@"PrimaryField"];
+    [sp setObject:orderby forKey:@"OrderBy"];
+    return sp;
+}
+
 //创建where条件的orderby命令
 +(NSMutableDictionary *)createOrderByName:(NSString *)name andOrder:(NSString *)order andIndex:(NSString *)index andType:(ParameterType)type{
     NSMutableDictionary *orderBy = [[NSMutableDictionary alloc]init];
