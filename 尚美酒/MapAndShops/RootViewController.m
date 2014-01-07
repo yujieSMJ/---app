@@ -135,8 +135,10 @@
     
     
     //////////////////////////////////////////////////////////////////////////
+    ////生成参数的列表对象PrimaryFieldList//////////
+    //////////////////////////////////////////////////////////////////////////
     
-    NSMutableDictionary *field1 = [XmlCommands createFieldByName:@"Bname" andType:@"String" andValue:@"尚美酒"];
+    NSMutableDictionary *field1 = [XmlCommands createFieldByName:@"Bname" andType:String andValue:@"尚美酒"];
     
     NSMutableArray *fields = [NSMutableArray arrayWithObjects:field1, nil];
     
@@ -145,20 +147,24 @@
     NSMutableArray *mp =[NSMutableArray arrayWithObjects:mp1, nil];
     
     ///////////////////////////////////////////////////////////////////////////
+    ///生成where条件的列表对象OrderByList//////
+    //////////////////////////////////////////////////////////////////////////
     
-    NSMutableDictionary *pf = [XmlCommands createParameterFieldsByName:@"BID" andValue:@"1" andReleationShip:@"=" andAppend:@"" andIndex:@"0" andType:@"Int32"];
+    NSMutableDictionary *pf = [XmlCommands createParameterFieldsByName:@"BID" andValue:@"1" andReleationShip:Equality andAppend:NONE andIndex:@"0" andType:Int32];
     
     NSMutableArray *pflist = [NSMutableArray arrayWithObjects:pf, nil];
     
-    //////////////////////////////////////////////////////////////////////////////
-    
-    NSMutableDictionary *ord =[XmlCommands createOrderByName:@"Bname" andOrder:@"desc" andIndex:@"0" andType:@"String"];
+    NSMutableDictionary *ord =[XmlCommands createOrderByName:@"Bname" andOrder:@"desc" andIndex:@"0" andType:String];
     
     NSMutableArray *ords = [NSMutableArray arrayWithObjects:ord, nil];
     
     NSMutableDictionary *sp = [XmlCommands createSelectParameterByID:@"0" andTops:@"" andPrimaryFieldList:pflist andOrderByList:ords];
     
-    NSMutableString *xml = [XmlCommands createSimpleCommandByType:@"Select" andTableName:@"Brand" andParaSort:@"0" andSelectPID:@"0" andKeyName:@"Bname" andParameters:mp andSelectParameter:sp];
+    ////////////////////////////////////////////////////////////////////////////////////////////
+    ////生成单条XMLcommand命令，需要参数的列表对象PrimaryFieldList和where条件的列表对象OrderByList//////
+    ////////////////////////////////////////////////////////////////////////////////////////////
+    
+    NSMutableString *xml = [XmlCommands createSimpleCommandByType:Select andTableName:@"Brand" andParaSort:@"0" andSelectPID:@"0" andKeyName:@"Bname" andParameters:mp andSelectParameter:sp];
     
     NSLog(@"%@",xml);
 }

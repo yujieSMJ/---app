@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>1D2A9A7F-7DF0-4079-B1ED-08D7CE5EB53A</string>
+	<key>IDESourceControlProjectName</key>
+	<string>尚美酒</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>F685FA92-3E2D-42EF-930A-AF751E839AD9</key>
+		<string>https://github.com/yujieSMJ/---app.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>尚美酒.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>F685FA92-3E2D-42EF-930A-AF751E839AD9</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/yujieSMJ/---app.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>F685FA92-3E2D-42EF-930A-AF751E839AD9</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>F685FA92-3E2D-42EF-930A-AF751E839AD9</string>
+			<key>IDESourceControlWCCName</key>
+			<string>尚美酒</string>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -99,6 +99,10 @@
 
 +(NSMutableString *)createXmlParametersByMPList:(NSMutableArray *)MParameterList andSelectParameter:(NSMutableDictionary *)SParameter{
     NSMutableString *xmlString = [NSMutableString stringWithString:@"<parameters>"];
+    if(MParameterList == nil)
+    {
+        [xmlString appendFormat:@"<modificationParameter paraID=\"\"></modificationParameter>"];
+    }
     for(NSMutableDictionary *MParameter in MParameterList)
     {
         [xmlString appendFormat:@"<modificationParameter paraID=\"%@\">",[MParameter objectForKey:@"ParaID"]];
@@ -144,10 +148,10 @@
 }
 
 //生成命令
-+(NSMutableDictionary *)createCommandByID:(NSString *)cid andType:(NSString *)type andTableName:(NSString *)tname andParaSort:(NSString *)paraIDs andSelectPID:(NSString *)spid andKeyName:(NSString *)keyname{
++(NSMutableDictionary *)createCommandByID:(NSString *)cid andType:(CommandType)type andTableName:(NSString *)tname andParaSort:(NSString *)paraIDs andSelectPID:(NSString *)spid andKeyName:(NSString *)keyname{
     NSMutableDictionary *cmd = [[NSMutableDictionary alloc]init];
     [cmd setObject:cid forKey:@"ID"];
-    [cmd setObject:type forKey:@"CommandType"];
+    [cmd setObject:[NSString stringWithFormat:@"%d",type] forKey:@"CommandType"];
     [cmd setObject:tname forKey:@"TableName"];
     [cmd setObject:paraIDs forKey:@"ParaSort"];
     [cmd setObject:spid forKey:@"SPID"];
@@ -172,10 +176,10 @@
 }
 
 //创建单个参数、键值、类型
-+(NSMutableDictionary *)createFieldByName:(NSString *)name andType:(NSString *)type andValue:(NSString *)value{
++(NSMutableDictionary *)createFieldByName:(NSString *)name andType:(CommandType)type andValue:(NSString *)value{
     NSMutableDictionary *field = [[NSMutableDictionary alloc]init];
     [field setObject:name forKey:@"Name"];
-    [field setObject:type forKey:@"Type"];
+    [field setObject:[NSString stringWithFormat:@"%d",type] forKey:@"Type"];
     [field setObject:value forKey:@"Value"];
     return field;
 }
@@ -200,25 +204,35 @@
     return sp;
 }
 
+//生成包含多个参数和orderby参数的where条件
++(NSMutableDictionary *)createSelectParameterByPFieldList:(NSMutableArray *)primaryField andOrderByList:(NSMutableArray *)orderby{
+    NSMutableDictionary *sp = [[NSMutableDictionary alloc]init];
+    [sp setObject:@"0" forKey:@"ID"];
+    [sp setObject:@"" forKey:@"Top"];
+    [sp setObject:primaryField forKey:@"PrimaryField"];
+    [sp setObject:orderby forKey:@"OrderBy"];
+    return sp;
+}
+
 //创建where条件的orderby命令
-+(NSMutableDictionary *)createOrderByName:(NSString *)name andOrder:(NSString *)order andIndex:(NSString *)index andType:(NSString *)type{
++(NSMutableDictionary *)createOrderByName:(NSString *)name andOrder:(NSString *)order andIndex:(NSString *)index andType:(ParameterType)type{
     NSMutableDictionary *orderBy = [[NSMutableDictionary alloc]init];
     [orderBy setObject:name forKey:@"Name"];
     [orderBy setObject:order forKey:@"Order"];
     [orderBy setObject:index forKey:@"Index"];
-    [orderBy setObject:type forKey:@"Type"];
+    [orderBy setObject:[NSString stringWithFormat:@"%d",type] forKey:@"Type"];
     return  orderBy;
 }
 
 //创建where语句中的查询参数、值及其关系
-+(NSMutableDictionary *)createParameterFieldsByName:(NSString *)name andValue:(NSString *)value andReleationShip:(NSString *)releat andAppend:(NSString *)append andIndex:(NSString *)index andType:(NSString *)type{
++(NSMutableDictionary *)createParameterFieldsByName:(NSString *)name andValue:(NSString *)value andReleationShip:(ReleationShip)releat andAppend:(AppendType)append andIndex:(NSString *)index andType:(ParameterType)type{
     NSMutableDictionary *object = [[NSMutableDictionary alloc]init];
     [object setObject:name forKey:@"Name"];
     [object setObject:value forKey:@"Value"];
-    [object setObject:releat forKey:@"ReleationShip"];
-    [object setObject:append forKey:@"Append"];
+    [object setObject:[NSString stringWithFormat:@"%d",releat] forKey:@"ReleationShip"];
+    [object setObject:[NSString stringWithFormat:@"%d",append] forKey:@"Append"];
     [object setObject:index forKey:@"Index"];
-    [object setObject:type forKey:@"Type"];
+    [object setObject:[NSString stringWithFormat:@"%d",type] forKey:@"Type"];
     return object;
 }
 
@@ -233,10 +247,20 @@
     return xmlString;
 }
 
-+(NSMutableString *)createSimpleCommandByType:(NSString *)type andTableName:(NSString *)tname andParaSort:(NSString *)paraIDs andSelectPID:(NSString *)spid andKeyName:(NSString *)keyname andParameters:(NSMutableArray *)MParameterList andSelectParameter:(NSMutableDictionary *)SParameter{
++(NSMutableString *)createSimpleCommandByType:(CommandType)type andTableName:(NSString *)tname andParaSort:(NSString *)paraIDs andSelectPID:(NSString *)spid andKeyName:(NSString *)keyname andParameters:(NSMutableArray *)MParameterList andSelectParameter:(NSMutableDictionary *)SParameter{
     NSMutableString *xmlString = [NSMutableString stringWithString:@"<?xml version='1.0' encoding='UTF-8'?>"];
     [xmlString appendString:@"<root><xmlCommandSets><xmlCommandSet groupID=\"0\" Index=\"0\" cmdSorts=\"1\" id=\"1\" pid=\"0\" dbexe=\"new\"/></xmlCommandSets><xmlCommands>"];
-    [xmlString appendFormat:@"<xmlCommand id=\"0\" commandType=\"%@\" tableName=\"%@\" paraSort=\"%@\" spID=\"%@\" keyName=\"%@\" /></xmlCommands>",type,tname,paraIDs,spid,keyname];
+    [xmlString appendFormat:@"<xmlCommand id=\"0\" commandType=\"%d\" tableName=\"%@\" paraSort=\"%@\" spID=\"%@\" keyName=\"%@\" /></xmlCommands>",type,tname,paraIDs,spid,keyname];
+    xmlString = [NSMutableString stringWithString:[self createXmlParametersByMPList:MParameterList andSelectParameter:SParameter andXmlString:xmlString]];
+    [xmlString appendString:@"</root>"];
+    return xmlString;
+}
+
+//创建单条命令
++(NSMutableString *)createSimpleCommandByType:(CommandType)type andTableName:(NSString *)tname andKeyName:(NSString *)keyname andParameters:(NSMutableArray *)MParameterList andSelectParameter:(NSMutableDictionary *)SParameter{
+    NSMutableString *xmlString = [NSMutableString stringWithString:@"<?xml version='1.0' encoding='UTF-8'?>"];
+    [xmlString appendString:@"<root><xmlCommandSets><xmlCommandSet groupID=\"0\" Index=\"0\" cmdSorts=\"1\" id=\"1\" pid=\"0\" dbexe=\"new\"/></xmlCommandSets><xmlCommands>"];
+    [xmlString appendFormat:@"<xmlCommand id=\"0\" commandType=\"%d\" tableName=\"%@\" paraSort=\"0\" spID=\"0\" keyName=\"%@\" /></xmlCommands>",type,tname,keyname];
     xmlString = [NSMutableString stringWithString:[self createXmlParametersByMPList:MParameterList andSelectParameter:SParameter andXmlString:xmlString]];
     [xmlString appendString:@"</root>"];
     return xmlString;
